@@ -72,6 +72,15 @@ button:hover {
 .error {
     color: #e70064;
     font-size: 0.9em;
-    display: none;
+    display: block; /* Ensures errors are always aligned properly */
     text-align: left;
+    visibility: hidden;
+}
+
+.error:empty {
+    visibility: hidden;
+}
+
+.error:not(:empty) {
+    visibility: visible;
 }
