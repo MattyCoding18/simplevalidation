@@ -5,40 +5,51 @@ document.getElementById('bookingForm').addEventListener('submit', function (even
 	let emailInput = document.getElementById('email');
 	let creditCardInput = document.getElementById('creditCard');
 
-	document.getElementById('nameError').textContent = "";
-	document.getElementById('emailError').textContent = "";
-	document.getElementById('creditCardError').textContent = "";
+	let nameError = document.getElementById('nameError');
+	let emailError = document.getElementById('emailError');
+	let creditCardError = document.getElementById('creditCardError');
+
+	// Clear previous errors
+	nameError.textContent = "";
+	emailError.textContent = "";
+	creditCardError.textContent = "";
 
 	let isValid = true;
 
-	if (!/^[a-zA-Z\s]+$/.test(nameInput.value)) {
-		document.getElementById('nameError').textContent = "Please enter a valid name.";
-		document.getElementById('nameError').style.display = 'block';
+	// Validate Name (Only letters and spaces)
+	if (!/^[a-zA-Z\s]+$/.test(nameInput.value.trim())) {
+		nameError.textContent = "Please enter a valid name.";
+		nameError.style.display = 'block';
 		nameInput.style.borderColor = '#e70064';
 		isValid = false;
 	} else {
 		nameInput.style.borderColor = '#89c82e';
 	}
 
-	if (emailInput.value === "" || !emailInput.value.includes("@") || !emailInput.value.includes(".")) {
-		document.getElementById('emailError').textContent = "Please enter a valid email.";
-		document.getElementById('emailError').style.display = 'block';
+	// Validate Email (Regex for better accuracy)
+	const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (!emailPattern.test(emailInput.value.trim())) {
+		emailError.textContent = "Please enter a valid email.";
+		emailError.style.display = 'block';
 		emailInput.style.borderColor = '#e70064';
 		isValid = false;
 	} else {
 		emailInput.style.borderColor = '#89c82e';
 	}
 
-	if (creditCardInput.value.length !== 16 || isNaN(creditCardInput.value)) {
-		document.getElementById('creditCardError').textContent = "Please enter a valid 16 digit credit card number.";
-		document.getElementById('creditCardError').style.display = 'block';
+	// Validate Credit Card (Must be 16 digits, numeric)
+	if (!/^\d{16}$/.test(creditCardInput.value.trim())) {
+		creditCardError.textContent = "Please enter a valid 16-digit credit card number.";
+		creditCardError.style.display = 'block';
 		creditCardInput.style.borderColor = '#e70064';
 		isValid = false;
 	} else {
 		creditCardInput.style.borderColor = '#89c82e';
 	}
 
+	// Submit Form
 	if (isValid) {
 		alert("Form Successfully Submitted!");
 	}
 });
+
