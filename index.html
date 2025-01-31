@@ -8,31 +8,33 @@
 </head>
 <body>
 	<header>
-	<h1>Booking Form</h1>
+		<h1>Booking Form</h1>
 	</header>
-	<main>
-	<form id="bookingForm">
-		<div>
-			<label for="name">Name:</label>
-			<input type="text" id="name" name="name" required>
-			<span id="nameError" class="error"></span>
-		</div>
 	
-		<div>
-			<label for="email">Email:</label>
-			<input type="email" id="email" name="email" required>
-			<span id="emailError" class="error"></span>
-		</div>
-	
-		<div>
-			<label for="creditCard">Credit Card Number:</label>
-			<input type="text" id="creditCard" name="creditCard" required>
-			<span id="creditCardError" class="error"></span>
-		</div>
-	
-		<button type="submit">Submit</button>
-	</form>
-	</main>
+	<section>
+		<form id="bookingForm">
+			<div>
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required>
+				<span id="nameError" class="error" aria-live="polite"></span>
+			</div>
+		
+			<div>
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" required>
+				<span id="emailError" class="error" aria-live="polite"></span>
+			</div>
+		
+			<div>
+				<label for="creditCard">Credit Card Number:</label>
+				<input type="text" id="creditCard" name="creditCard" required maxlength="16">
+				<span id="creditCardError" class="error" aria-live="polite"></span>
+			</div>
+		
+			<button type="submit">Submit</button>
+		</form>
+	</section>
+
 	<script src="script.js"></script>
-	</body>
+</body>
 </html>
